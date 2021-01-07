@@ -54,7 +54,7 @@ yargs.command({
         comment: {
             describe: 'Comment on the Student',
             type: 'string'
-        },
+        }
     },
     handler: function (argv) {
         studentsInfo.addStudent(argv.id, argv.name, argv.grade, argv.comment)
@@ -81,6 +81,38 @@ yargs.command({
     }
 
 })
+
+//Update Student given id
+yargs.command(
+    {
+        command: 'update',
+        describe: 'update student using its id',
+        builder: {
+            id: {
+                describe: 'ID of Student',
+                demandOption: true,
+                type: 'number'
+            },
+            name: {
+                describe: 'Name of Student',
+                demandOption: true,
+                type: 'string'
+            },
+            grade: {
+                describe: 'Grade of Student',
+                demandOption: true,
+                type: 'number'
+            },
+            comment: {
+                describe: 'Comment on the Student',
+                type: 'string'
+            }
+        },
+        handler: function (argv) {
+            studentsInfo.updateStudent(argv.id, argv.name, argv.grade, argv.comment);
+        }
+    }
+);
 
 
 

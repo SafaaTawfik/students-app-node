@@ -73,16 +73,42 @@ const deleteStudent = (id) => {
         console.log('No Student found with id = ' + id)
     }
 }
+
+const updateStudent = (id, name, grade, comment) => {
+    const allStudents = loadStudents();
+    //find the student with the given id to be updated
+    let targetstudent = allStudents.find((student) => {
+        return student.id === id;
+    });
+    if (targetstudent) {
+        targetstudent.name = name;
+        targetstudent.grade = grade;
+        targetstudent.comment = comment;
+
+        const studentsToKeep = allStudents.filter(function (students) {
+            return students.id !== id;
+        });
+
+        studentsToKeep.push(targetstudent);
+        saveStudents(studentsToKeep);
+        console.log('Student with id = ' + id + ' Updated');
+    }
+    else {
+        console.log('No Student found with id = ' + id)
+    }
+
+}
 //Save students
 const saveStudents = (allstudents) => {
     fs.writeFileSync('studentsInfo.json', JSON.stringify(allstudents))
 }
 
+
 module.exports = {
     listStudents: listStudents,
     getStudent: getStudent,
     addStudent: addStudent,
-    deleteStudent: deleteStudent
-
+    deleteStudent: deleteStudent,
+    updateStudent: updateStudent
 
 }
