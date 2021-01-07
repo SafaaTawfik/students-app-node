@@ -26,8 +26,7 @@ yargs.command({
         }
     },
     handler: function (argv) {
-        //  notes.readNote(argv.title)
-        console.log('Read Student by ID ' + argv.id);
+        studentsInfo.getStudent(argv.id);
     }
 
 })
@@ -58,9 +57,9 @@ yargs.command({
         },
     },
     handler: function (argv) {
-        // notes.addNote(argv.title, argv.body)
-        console.log('add handler');
-        console.log(argv.id + ' , ' + argv.name + ' , ' + argv.grade + argv.comment)
+        studentsInfo.addStudent(argv.id, argv.name, argv.grade, argv.comment)
+        //  console.log('add handler');
+        //console.log(argv.id + ' , ' + argv.name + ' , ' + argv.grade + argv.comment)
     }
 
 });
@@ -77,8 +76,8 @@ yargs.command({
         },
     },
     handler: function (argv) {
-        //notes.removeNote(argv.title)
-        console.log('Delete Student by ID');
+        studentsInfo.deleteStudent(argv.id)
+
     }
 
 })
